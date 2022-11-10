@@ -1,10 +1,10 @@
 import React from "react";
 
-import { Themes } from '../theme/theme';
-import { ThemeProvider } from '../utils/context';
+import { Themes } from 'src/theme/theme';
+import { ThemeProvider } from 'src/utils/context';
 
-import ThemeInfo from "../theme/menuTheme";
-import {BlackTheme, WhiteTheme} from "../theme/themechanger";
+import ThemeInfo from "src/theme/menuTheme";
+import {BlackTheme, WhiteTheme} from "src/theme/themechanger";
 
 
 interface MenusProp {

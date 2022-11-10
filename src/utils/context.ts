@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import {Themes} from "../theme/theme";
+import {Themes} from "src/theme/theme"
 
 const ThemeContext = React.createContext<Themes>(Themes.WHITE);
 const ThemeProvider = ThemeContext.Provider;

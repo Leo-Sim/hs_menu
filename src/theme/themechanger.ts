@@ -1,4 +1,4 @@
-import MenuTheme from './menuTheme';
+import MenuTheme from 'src/theme/menuTheme';
 
 class WhiteTheme extends MenuTheme {
     constructor() {
