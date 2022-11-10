@@ -1,19 +1,23 @@
 
-import React from "react";
-
 // MenuTheme has only variables that is dependent on 'theme'
 interface MenuTheme {
     bgColor: string
     textColor: string
+    hoverText: string
 }
 
 class ThemeInfo implements MenuTheme{
 
     private _bgColor: string = '';
     private _textColor: string = '';
+    private _hoverText: string = '';
 
-    constructor() {
+    get hoverText(): string {
+        return this._hoverText;
+    }
 
+    set hoverText(value: string) {
+        this._hoverText = value;
     }
 
     public get bgColor(): string {
