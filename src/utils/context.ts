@@ -1,11 +1,26 @@
 import React, {useContext} from "react";
-import {Themes} from "src/theme/theme"
+import {Themes} from "src/theme/theme";
 
-const ThemeContext = React.createContext<Themes>(Themes.WHITE);
+export interface MenuContext {
+    theme: Themes
+    selected: string
+    hideText: boolean
+}
+
+// interface for context.
+const defaultContext: MenuContext = {
+    theme: Themes.WHITE,
+    selected: '',
+    hideText: false
+}
+
+const ThemeContext = React.createContext<MenuContext>(defaultContext);
 const ThemeProvider = ThemeContext.Provider;
 
 const CurTheme = () => {
-    const theme: Themes = useContext(ThemeContext);
+    const context = useContext(ThemeContext);
+    const theme: Themes = context.theme;
+
     let curTheme: Themes;
 
     if(theme.toString() === '0') {
@@ -17,4 +32,15 @@ const CurTheme = () => {
     return curTheme;
 }
 
-export { ThemeProvider, CurTheme }
+const ShouldHideText = () => {
+    const context = useContext(ThemeContext);
+    return context.hideText;
+}
+
+const GetSelectedMenu = () => {
+    const context = useContext(ThemeContext);
+    return context.selected;
+}
+
+export { ThemeProvider, CurTheme, ShouldHideText, GetSelectedMenu };
+

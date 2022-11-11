@@ -1,6 +1,6 @@
 import React from "react";
 import {Themes} from "src/theme/theme";
-import {CurTheme} from "src/utils/context";
+import {CurTheme, ShouldHideText} from "src/utils/context";
 
 import ThemeInfo from "src/theme/menuTheme";
 import {BlackTheme, WhiteTheme} from "src/theme/themechanger";
@@ -8,9 +8,11 @@ import Menu from "./Menu";
 import {Link} from "react-router-dom";
 
 interface MenuProp {
+    id: string
     name: string
     url?: string
     head?: JSX.Element
+    setSelectedId?: Function
     children?: React.ReactElement | React.ReactElement[]
 }
 
@@ -34,7 +36,7 @@ export default (props: MenuProp) => {
     return (
         <div className={menuClass}>
 
-            <div className={hoverClass}>
+            <div className={hoverClass} onClick={() => props.setSelectedId && props.setSelectedId(props.id)}>
                 {
                     props.url?
                         <Link className={'inline-block '} to={props.url}>
@@ -42,7 +44,7 @@ export default (props: MenuProp) => {
                                 addHeader(props.head)
                             }
                             {
-                                props.name
+                                !ShouldHideText() && props.name
                             }
 
                         </Link>
@@ -51,7 +53,7 @@ export default (props: MenuProp) => {
                             {
                                 addHeader(props.head)
                             }
-                            { props.name }
+                            { !ShouldHideText() && props.name }
                         </div>
                 }
             </div>
@@ -61,7 +63,14 @@ export default (props: MenuProp) => {
                 React.Children.map(props.children, (child, i) => {
 
                     if(child) {
-                        return (<Menu url={child.props.url} name={child.props.name} head={child.props.head}></Menu>)
+                        return (
+                            <Menu
+                                id={child.props.id}
+                                url={child.props.url}
+                                name={child.props.name}
+                                head={child.props.head}
+                                setSelectedId={props.setSelectedId}></Menu>
+                        )
                     }
                 })
             }
