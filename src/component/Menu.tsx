@@ -26,8 +26,8 @@ export default (props: MenuProp) => {
 
     const themeClass: ThemeInfo = theme === Themes.WHITE? new WhiteTheme() : new BlackTheme();
 
-    const textPadding = 'pl-4 '
-    const menuClass = 'mb-2 text-left ' + textPadding + themeClass.textColor;
+    const textPadding = ' pl-4 '
+    const menuClass = 'mb-2 text-left text-base ' + textPadding + themeClass.textColor;
 
     const hoverClass = themeClass.hoverText;
 
