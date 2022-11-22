@@ -7,6 +7,7 @@ class WhiteTheme extends MenuTheme {
         this.bgColor = 'bg-gray-400';
         this.textColor = 'text-black';
         this.hoverText = 'cursor-pointer hover:text-white';
+        this.selected = 'text-white';
     }
 
 
@@ -15,9 +16,10 @@ class WhiteTheme extends MenuTheme {
 class BlackTheme extends MenuTheme {
     constructor() {
         super();
-        this.bgColor = 'bg-slate-700'
-        this.textColor = 'text-neutral-300'
+        this.bgColor = 'bg-slate-700';
+        this.textColor = 'text-neutral-300';
         this.hoverText = 'cursor-pointer hover:text-white';
+        this.selected = 'text-white';
     }
 }
 

@@ -2,6 +2,15 @@ import React from "react";
 
 const utilFuncs = {
 
+    getIdsOfChildren: (props: any) => {
+        return React.Children.map(props.children, child => {
+            if(child) {
+                return child.props.id;
+            }
+            return null;
+        });
+    },
+
     checkIfHaveHead: (menus: React.ReactElement | React.ReactElement[]): boolean => {
 
         let result: boolean = true;

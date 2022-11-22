@@ -4,6 +4,7 @@ import {BrowserRouter} from "react-router-dom";
 
 import {Themes} from 'src/theme/theme';
 import {MenuContext, ThemeProvider} from 'src/utils/context';
+import Utils from 'src/utils/util';
 
 import ThemeInfo from "src/theme/menuTheme";
 import {BlackTheme, WhiteTheme} from "src/theme/themechanger";
@@ -12,6 +13,8 @@ import util from 'src/utils/util';
 
 
 interface MenuContainerProp {
+    // specify initial menu id to be selected.
+    initId?: string
     theme?: Themes
     // whether hiding menu text when all menus has head or not
     hideText?: boolean
@@ -42,7 +45,8 @@ export default (props: MenuContainerProp) => {
         hideText = true;
     }
 
-    let [selectedId, setSelectedId] = useState('1')
+
+    let [selectedId, setSelectedId] = useState('1');
     let context: MenuContext = {
         theme: theme,
         hideText: hideText,
@@ -66,7 +70,7 @@ export default (props: MenuContainerProp) => {
                 <ThemeProvider value={ context }>
 
                     {menus}
-                    {selectedId}
+
                 </ThemeProvider>
             </BrowserRouter>
 

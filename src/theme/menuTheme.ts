@@ -11,6 +11,8 @@ class ThemeInfo implements MenuTheme{
     private _bgColor: string = '';
     private _textColor: string = '';
     private _hoverText: string = '';
+    // class for selected menu. => same as when menu is hovered
+    private _selected: string = '';
 
     get hoverText(): string {
         return this._hoverText;
@@ -34,6 +36,14 @@ class ThemeInfo implements MenuTheme{
 
     set textColor(value: string) {
         this._textColor = value;
+    }
+
+    get selected(): string {
+        return this._selected;
+    }
+
+    set selected(value: string) {
+        this._selected = value;
     }
 }
 
