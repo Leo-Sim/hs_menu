@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Themes} from "src/theme/theme";
 import {CurTheme, ShouldHideText, GetSelectedMenu} from "src/utils/context";
 import Utils from 'src/utils/util';
@@ -6,7 +6,7 @@ import Utils from 'src/utils/util';
 import ThemeInfo from "src/theme/menuTheme";
 import {BlackTheme, WhiteTheme} from "src/theme/themechanger";
 import Menu from "./Menu";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 
 interface MenuProp {
     id: string
@@ -23,7 +23,22 @@ const addHeader = (head?: JSX.Element) => {
     }
 }
 
+const initSelected = (curPath: string, menuId: string, menuUrl?: string, setSelectedId?: Function) => {
+
+    curPath = curPath.replace('/', '');
+    if(setSelectedId && menuUrl && (menuUrl === curPath)) {
+        setSelectedId(menuId);
+    }
+}
+
 export default (props: MenuProp) => {
+    const location = useLocation();
+
+    useEffect(() => {
+
+        initSelected(location.pathname, props.id, props.url, props.setSelectedId);
+
+    }, []);
 
     const theme: Themes = CurTheme();
 

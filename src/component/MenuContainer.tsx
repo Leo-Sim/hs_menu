@@ -4,7 +4,6 @@ import {BrowserRouter} from "react-router-dom";
 
 import {Themes} from 'src/theme/theme';
 import {MenuContext, ThemeProvider} from 'src/utils/context';
-import Utils from 'src/utils/util';
 
 import ThemeInfo from "src/theme/menuTheme";
 import {BlackTheme, WhiteTheme} from "src/theme/themechanger";
@@ -14,7 +13,7 @@ import util from 'src/utils/util';
 
 interface MenuContainerProp {
     // specify initial menu id to be selected.
-    initId?: string
+    initId: string
     theme?: Themes
     // whether hiding menu text when all menus has head or not
     hideText?: boolean
@@ -22,6 +21,27 @@ interface MenuContainerProp {
 
 }
 
+function validateInitId(initId: string, props: MenuContainerProp): boolean {
+    let isValid: boolean = false;
+
+    React.Children.forEach(props.children, child => {
+        if(child.props.id == initId) {
+            isValid = true;
+            return false;
+        }
+
+        // Check if any of sub menus ids is equals to initId.
+        if(child.props.children) {
+            const subMenu = child.props;
+            if(validateInitId(initId, subMenu)) {
+                isValid = true;
+                return false;
+            }
+        }
+    });
+
+    return isValid;
+}
 
 
 export default (props: MenuContainerProp) => {
@@ -45,8 +65,19 @@ export default (props: MenuContainerProp) => {
         hideText = true;
     }
 
+    // if 'initId' is valid, set selected menu. if not valid, set first menu selected.
+    const initId = props.initId;
 
-    let [selectedId, setSelectedId] = useState('1');
+    const isValidInitValue = validateInitId(initId, props);
+
+    if(!isValidInitValue) {
+        console.error('Props \"initId\" is invalid. \"initId\" should be one of menus id');
+        return (<div></div>);
+    }
+
+    const initSelect: string = initId && isValidInitValue? initId : '';
+
+    let [selectedId, setSelectedId] = useState(initSelect);
     let context: MenuContext = {
         theme: theme,
         hideText: hideText,
@@ -66,7 +97,7 @@ export default (props: MenuContainerProp) => {
     const containerCss = 'h-full pt-2  ' + width;
     return (
         <div className={ containerCss + themeClass.bgColor }>
-            <BrowserRouter>
+            <BrowserRouter >
                 <ThemeProvider value={ context }>
 
                     {menus}
