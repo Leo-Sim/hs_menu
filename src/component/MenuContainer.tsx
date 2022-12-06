@@ -94,7 +94,7 @@ export default (props: MenuContainerProp) => {
         return null;
     });
 
-    const containerCss = 'h-full pt-2  ' + width;
+    const containerCss = 'absolute inset-y-0 h-full pt-2  ' + width;
     return (
         <div className={ containerCss + themeClass.bgColor }>
             <BrowserRouter >
