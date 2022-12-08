@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import {Themes} from "src/theme/theme";
+import {Themes} from "../theme/theme";
 
 export interface MenuContext {
     theme: Themes

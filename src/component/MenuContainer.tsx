@@ -2,13 +2,13 @@ import React, {useState} from "react";
 
 import {BrowserRouter} from "react-router-dom";
 
-import {Themes} from 'src/theme/theme';
-import {MenuContext, ThemeProvider} from 'src/utils/context';
+import {Themes} from '../theme/theme';
+import {MenuContext, ThemeProvider} from '../utils/context';
 
-import ThemeInfo from "src/theme/menuTheme";
-import {BlackTheme, WhiteTheme} from "src/theme/themechanger";
+import ThemeInfo from "../theme/menuTheme";
+import {BlackTheme, WhiteTheme} from "../theme/themechanger";
 
-import util from 'src/utils/util';
+import util from '../utils/util';
 
 
 interface MenuContainerProp {

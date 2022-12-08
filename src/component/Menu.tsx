@@ -1,10 +1,10 @@
 import React, {useEffect} from "react";
-import {Themes} from "src/theme/theme";
-import {CurTheme, ShouldHideText, GetSelectedMenu} from "src/utils/context";
-import Utils from 'src/utils/util';
+import {Themes} from "../theme/theme";
+import {CurTheme, ShouldHideText, GetSelectedMenu} from "../utils/context";
+import Utils from '../utils/util';
 
-import ThemeInfo from "src/theme/menuTheme";
-import {BlackTheme, WhiteTheme} from "src/theme/themechanger";
+import ThemeInfo from "../theme/menuTheme";
+import {BlackTheme, WhiteTheme} from "../theme/themechanger";
 import Menu from "./Menu";
 import {Link, useLocation} from "react-router-dom";
 
