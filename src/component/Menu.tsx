@@ -5,7 +5,7 @@ import Utils from '../utils/util';
 
 import ThemeInfo from "../theme/menuTheme";
 import {BlackTheme, WhiteTheme} from "../theme/themechanger";
-import Menu from "./Menu";
+import {Menu as SubMenu} from "./Menu";
 import {Link, useLocation} from "react-router-dom";
 
 interface MenuProp {
@@ -31,7 +31,7 @@ const initSelected = (curPath: string, menuId: string, menuUrl?: string, setSele
     }
 }
 
-export default (props: MenuProp) => {
+const Menu = (props: MenuProp) => {
     const location = useLocation();
 
     useEffect(() => {
@@ -96,12 +96,12 @@ export default (props: MenuProp) => {
 
                     if(child) {
                         return (
-                            <Menu
+                            <SubMenu
                                 id={child.props.id}
                                 url={child.props.url}
                                 name={child.props.name}
                                 head={child.props.head}
-                                setSelectedId={props.setSelectedId}></Menu>
+                                setSelectedId={props.setSelectedId}></SubMenu>
                         )
                     }
                 })
@@ -109,3 +109,5 @@ export default (props: MenuProp) => {
         </div>
     )
 }
+
+export {Menu}

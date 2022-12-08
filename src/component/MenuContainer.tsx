@@ -44,7 +44,7 @@ function validateInitId(initId: string, props: MenuContainerProp): boolean {
 }
 
 
-export default (props: MenuContainerProp) => {
+const MenuContainer = (props: MenuContainerProp) => {
 
     let [theme, setTheme] = useState(props.theme? props.theme : Themes.WHITE)
 
@@ -109,3 +109,5 @@ export default (props: MenuContainerProp) => {
     )
 
 }
+
+export {MenuContainer}
