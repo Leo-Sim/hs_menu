@@ -77,6 +77,7 @@ const MenuContainer = (props: MenuContainerProp) => {
 
     const initSelect: string = initId && isValidInitValue? initId : '';
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     let [selectedId, setSelectedId] = useState(initSelect);
     let context: MenuContext = {
         theme: theme,
